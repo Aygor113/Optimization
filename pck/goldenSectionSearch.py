@@ -4,16 +4,6 @@ def goldenSectionSearch(function, xl, xu):
     #f = lambda x: 4 - x1 ** 2 - 0.2 * x2 ** 3      # First function to verify results
     #f = lambda x: 3*x**3 + 5 * x ** 2 - 7          # Second function to verify results
 
-
-    # Returns function evaluation
-    #def f(function, x):
-    #    return (lambda x: function)
-
-
-    # Initial guess
-
-    #xl = -5; xu = 0
-
     ##################
     print('iter \t\t\t error \t\t\t xopt')
     error = 100; i = 1
