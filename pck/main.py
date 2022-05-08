@@ -16,16 +16,16 @@ print(precision)
 L = input("Please enter number of iterations:\t")
 print(L)
 """
-intervalLength = input("Please enter length of the interval")
+intervalLength = int(input("Please enter length of the interval: "))
 print(intervalLength)
 
 
 def functionExample(point):
     x = point[0]
     y = point[1]
-    #return -1*(2*x**2 - 1.05*x**4 + (1/6)*x**6+x*y+y**2)        # funkcja testowa
+    return -1*(2*x**2 - 1.05*x**4 + (1/6)*x**6+x*y+y**2)        # funkcja testowa
     #return 1.5 * x - 2.5*y - 1 - math.sin(x+y) - (x-y)**2       # funkcja testowa 2
-    return 0 - (x-4)**2 - (x -y**2)**2       # funkcja testowa 2
+    #return 0 - (x-4)**2 - (x -y**2)**2       # funkcja testowa 3
 
 
     #return -((x+2)**2 + (y-1)**2)

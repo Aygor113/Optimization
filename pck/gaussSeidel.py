@@ -24,8 +24,11 @@ def gaussSeidel(function, precison, L, p0, intervalLength):
     n = len(point)      # number of entered function variables
     while (i < L):
         for pos in range(n):
+            xl = point[pos] - intervalLength
+            xu = point[pos] + intervalLength
+
             f = lambda x: function(changePoint(point, pos, x))
-            value = goldenSectionSearch(f, XL, XU)
+            value = goldenSectionSearch(f, xl, xu)
             point = changePoint(point, pos, value)
         i += 1
 
