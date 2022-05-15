@@ -19,7 +19,7 @@ def changePoint(point, argNumber, argValue):
 # precision - ??
 # L - max number of iterations
 # p0 - starting point chosen by the user
-def gaussSeidel(function, precison, L, p0, intervalLength):
+def gaussSeidel(function, givenExpression, precison, L, p0, intervalLength):
     i = 0
     it = 0
     point = p0
@@ -34,7 +34,7 @@ def gaussSeidel(function, precison, L, p0, intervalLength):
             xl = point[pos] - intervalLength
             xu = point[pos] + intervalLength
 
-            f = lambda x: function(changePoint(point, pos, x))
+            f = lambda x: function(givenExpression, changePoint(point, pos, x))
             value = goldenSectionSearch(f, xl, xu)
             point = changePoint(point, pos, value)
 
@@ -45,7 +45,7 @@ def gaussSeidel(function, precison, L, p0, intervalLength):
         sumOfSquares = 0
         # computing one of the stop criterion - difference between 2 function values for specific points
         if len(pointList) >= 2:
-            funcValDiff = abs(function(pointList[it]) - function(pointList[it - 1]))
+            funcValDiff = abs(function(givenExpression, pointList[it]) - function(givenExpression, pointList[it - 1]))
         print("WARTOŚ FUNKCJI: " + str(funcValDiff))
 
         # computing one of the stop criterion - distance diff between 2 points - euclidean norm
