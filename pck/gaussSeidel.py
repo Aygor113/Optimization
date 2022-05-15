@@ -19,26 +19,25 @@ def changePoint(point, argNumber, argValue):
 # precision - ??
 # L - max number of iterations
 # p0 - starting point chosen by the user
+# intervalLength
 def gaussSeidel(function, givenExpression, precison, L, p0, intervalLength):
     i = 0
     it = 0
-    point = p0
+    point = p0              # first point is our initial guess
     funcValDiff = 10000
     twoPointDist = 10000
-    pointList.append(p0)
-    n = len(point)      # number of entered function variables
-    """or funcValDiff > 0.001"""            # zmiana znaku !!!!!!
-    """ i < L"""
+    pointList.append(p0)    # adding initial point (guess) to list of all points
+    n = len(point)          # number of entered function variables
+
     while (i < L and funcValDiff > 0.00000000000000008 and twoPointDist > 0.005):
         for pos in range(n):
             xl = point[pos] - intervalLength
             xu = point[pos] + intervalLength
 
             f = lambda x: function(givenExpression, changePoint(point, pos, x))
-            value = goldenSectionSearch(f, xl, xu)
+            value = goldenSectionSearch(f, xl, xu)      # value is xopt
             point = changePoint(point, pos, value)
 
-        prevPoint = point
         pointList.append(point)
         i += 1
         it += 1
@@ -46,18 +45,18 @@ def gaussSeidel(function, givenExpression, precison, L, p0, intervalLength):
         # computing one of the stop criterion - difference between 2 function values for specific points
         if len(pointList) >= 2:
             funcValDiff = abs(function(givenExpression, pointList[it]) - function(givenExpression, pointList[it - 1]))
-        print("WARTOŚ FUNKCJI: " + str(funcValDiff))
 
         # computing one of the stop criterion - distance diff between 2 points - euclidean norm
-        if len(pointList) >=2:
+        if len(pointList) >= 2:
             for z in range(n):
                 sumOfSquares += (pointList[it][z])**2
-            p1 = sumOfSquares
+            p1 = sqrt(sumOfSquares)
             for z in range(n):
                 sumOfSquares += (pointList[it-1][z])**2
-            p2 = sumOfSquares
+            p2 = sqrt(sumOfSquares)
         twoPointDist = abs(p1-p2)
 
     # printing
     print("Lista punktow")
     print(pointList)
+    return pointList

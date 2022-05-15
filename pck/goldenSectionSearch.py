@@ -1,18 +1,13 @@
 # Golden section search
 from sympy import *
 def goldenSectionSearch(function, xl, xu):
-    #f = lambda x: 4 - x1 ** 2 - 0.2 * x2 ** 3      # First function to verify results
-    #f = lambda x: 3*x**3 + 5 * x ** 2 - 7          # Second function to verify results
-
-    ##################
-    #print('iter \t\t\t error \t\t\t xopt')
     error = 100; i = 1
 
-    ratio = (5 ** 0.5 - 1) / 2
+    ratio = (5 ** 0.5 - 1) / 2      # golden ratio
     D = ratio * (xu - xl)
     x1 = xl + D
     x2 = xu - D
-    f1 = function(x1)
+    f1 = function(x1)               # compting function value in this point
     f2 = function(x2)
 
     # Golden section search
@@ -36,7 +31,6 @@ def goldenSectionSearch(function, xl, xu):
             xopt = x2
 
         error = (1 - ratio) * abs((xu-xl) / xopt) * 100
-        #print(i, error, xopt)
         i += 1
     return xopt
 
