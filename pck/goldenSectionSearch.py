@@ -5,7 +5,7 @@ def goldenSectionSearch(function, xl, xu):
     #f = lambda x: 3*x**3 + 5 * x ** 2 - 7          # Second function to verify results
 
     ##################
-    print('iter \t\t\t error \t\t\t xopt')
+    #print('iter \t\t\t error \t\t\t xopt')
     error = 100; i = 1
 
     ratio = (5 ** 0.5 - 1) / 2
@@ -17,7 +17,7 @@ def goldenSectionSearch(function, xl, xu):
 
     # Golden section search
     while error > 0.1:
-        if f1> f2:
+        if f1 > f2:
             xl = x2
             x2 = x1
             f2 = f1
@@ -36,8 +36,7 @@ def goldenSectionSearch(function, xl, xu):
             xopt = x2
 
         error = (1 - ratio) * abs((xu-xl) / xopt) * 100
-        #print('%f \t %f \t %f'% (i, error, xopt))
-        print(i, error, xopt)
+        #print(i, error, xopt)
         i += 1
     return xopt
 
