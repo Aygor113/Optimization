@@ -5,12 +5,12 @@ import matplotlib.pyplot as plt
 import numpy
 import numpy as np
 from mpl_toolkits.mplot3d import Axes3D
-from pck import main
+from backend import main
 
 #General
 from tkinter import messagebox
 
-from pck.main import OptimizationAlgorithm
+from backend.main import OptimizationAlgorithm
 
 root = Tk()
 root.title('Gauss - Seidl Algorithm')
@@ -66,10 +66,12 @@ def display_selected(choice):
     choiceVar = variable.get()
     #print(choiceVar)
 
-options = ['2*X^2 - 1.05*X^4 + (1/6)*X^6 + X*Y + Y^2',
+options = ['-(2*X^2 - 1.05*X^4 + (1/6)*X^6 + X*Y + Y^2)',
            '(X-4)^2 + (X - Y^2)^2',
            '4*X^2 - 2.1*X^4 + (1/3)*X^6 + X*Y - 4*Y^2 + 4*Y^4',
-           'Funkcja4']
+           'Funkcja4',
+           "0 - (X-4)^2 - (X -Y^2)^2 ",
+           "-((X-4)^2 + (Y - 2)^2)"]
 
 variable = StringVar()
 variable.set(options[0])
@@ -140,7 +142,6 @@ def DownloadParameters():
     FunctionDropDownMenu = variable.get()
     FunctionDropDownMenu = FunctionDropDownMenu.replace("^","**")
 
-    initialPoint = [4.5, -1]
 
     if FunctionVarBox == "":
         FunctionVar = FunctionDropDownMenu
@@ -157,7 +158,21 @@ def DownloadParameters():
     L = IterationsVar
     intervalLength = RangeVar
 
+    initialPoint = [4.5, -1]
+    initialPoint = []
+    strInitialPoint = StartPointVar
+    strInitialPoint = strInitialPoint.replace("[" , "")
+    strInitialPoint = strInitialPoint.replace("]" , "")
 
+    list = strInitialPoint.split(",")
+    print(list)
+    for i in range(len(list)):
+        initialPoint.append(float(list[i]))
+
+    print("Initial point: ")
+    print(initialPoint)
+    print("Initial point: ")
+    print(len(initialPoint))
 
 
 ############################### Charts ########################################
@@ -266,10 +281,10 @@ def Results():      # draw charts and calculate results
     optValue = OptimizationAlgorithm.functionExample(givenExpression, optPlace)
 
 
-    FunctionValueLabel = Label(root, text=optValue)          #Tutaj możesz przypisać rezultaty jakie zwraca program
+    FunctionValueLabel = Label(root, text=optPlace)          #Tutaj możesz przypisać rezultaty jakie zwraca program
     FunctionValueLabel.place(x=700, y=150)
 
-    MinimumLabel = Label(root, text=optPlace)
+    MinimumLabel = Label(root, text=optValue)
     MinimumLabel.place(x=700, y=200)
 
 

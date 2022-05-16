@@ -2,7 +2,7 @@
 from sympy import *
 
 # p0 is a whole starting point, n is a number of variables in function
-from pck.goldenSectionSearch import goldenSectionSearch
+from backend.goldenSectionSearch import goldenSectionSearch
 
 XL = -5     # lower bound for golden section search
 XU = 5      # upper bound for golden section search

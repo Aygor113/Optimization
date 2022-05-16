@@ -1,8 +1,8 @@
 # Main project file
 import math
 
-from pck.gaussSeidel import gaussSeidel
-from pck.goldenSectionSearch import goldenSectionSearch
+from backend.gaussSeidel import gaussSeidel
+from backend.goldenSectionSearch import goldenSectionSearch
 INTERVAL_LENGTH = 10
 
 class OptimizationAlgorithm:
