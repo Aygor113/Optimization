@@ -1,5 +1,7 @@
 # Golden section search
 from sympy import *
+from math import *
+
 def goldenSectionSearch(function, xl, xu):
     error = 100; i = 1
 

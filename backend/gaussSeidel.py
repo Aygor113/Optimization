@@ -1,5 +1,7 @@
 # Gauss Seidel algorithm using golden seaction search as optimization method in specific direction
 from sympy import *
+from math import *
+
 
 # p0 is a whole starting point, n is a number of variables in function
 from backend.goldenSectionSearch import goldenSectionSearch

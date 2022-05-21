@@ -1,5 +1,5 @@
 # Main project file
-import math
+from math import *
 
 from backend.gaussSeidel import gaussSeidel
 from backend.goldenSectionSearch import goldenSectionSearch
@@ -17,11 +17,11 @@ class OptimizationAlgorithm:
         X = point[0]
         Y = point[1]
         if(len(point) == 3):
-            z = point[2]
+            Z = point[2]
         if(len(point) == 4):
-            v = point[3]
+            V = point[3]
         if(len(point) == 5):
-            w = point[4]
+            W = point[4]
         return eval(expression)      # funkcja testowa
         #return 1.5 * x - 2.5*y - 1 - math.sin(x+y) - (x-y)**2       # funkcja testowa expected
         #return 0 - (x-4)**2 - (x -y**2)**2       # funkcja testowa

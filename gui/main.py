@@ -6,6 +6,8 @@ import numpy
 import numpy as np
 from mpl_toolkits.mplot3d import Axes3D
 from backend import main
+from math import *
+
 
 #General
 from tkinter import messagebox
@@ -69,7 +71,7 @@ def display_selected(choice):
 options = ['-(2*X^2 - 1.05*X^4 + (1/6)*X^6 + X*Y + Y^2)',
            '(X-4)^2 + (X - Y^2)^2',
            '4*X^2 - 2.1*X^4 + (1/3)*X^6 + X*Y - 4*Y^2 + 4*Y^4',
-           'Funkcja4',
+           '1.5 * x - 2.5*y - 1 - sin(x+y) - (x-y)**2',
            "0 - (X-4)^2 - (X -Y^2)^2 ",
            "-((X-4)^2 + (Y - 2)^2)"]
 
@@ -141,6 +143,13 @@ def DownloadParameters():
     FunctionVarBox = FunctionVarBox.replace("^","**")
     FunctionDropDownMenu = variable.get()
     FunctionDropDownMenu = FunctionDropDownMenu.replace("^","**")
+    FunctionDropDownMenu = FunctionDropDownMenu.replace("x","X")
+    FunctionDropDownMenu = FunctionDropDownMenu.replace("y","Y")
+    FunctionDropDownMenu = FunctionDropDownMenu.replace("z","Z")
+    FunctionDropDownMenu = FunctionDropDownMenu.replace("v","V")
+    FunctionDropDownMenu = FunctionDropDownMenu.replace("w","W")
+
+
 
 
     if FunctionVarBox == "":
@@ -273,7 +282,7 @@ def plotAll():
 def Results():      # draw charts and calculate results
 
     DownloadParameters()
-    plotAll()              #!!!!!!!!!!!!!!
+    #plotAll()              #!!!!!!!!!!!!!!
 
     algorithm = OptimizationAlgorithm(givenExpression, L, initialPoint, intervalLength)
     pointList = algorithm.runAlgorithm()
