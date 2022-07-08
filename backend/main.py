@@ -1,33 +1,31 @@
 # Main project file
-from math import *
-
+#from math import *
+import math
 from backend.gaussSeidel import gaussSeidel
 from backend.goldenSectionSearch import goldenSectionSearch
 INTERVAL_LENGTH = 10
 
 class OptimizationAlgorithm:
-    def __init__(self, expression, L, initialPoint, intervalLength):
+    def __init__(self, expression, L, initialPoint, intervalLength, accuracyX, accuracyFX):
         self.givenExpression = expression
         self.L = L
         self.p_example = initialPoint
         self.intervalLength = intervalLength
+        self.accuracyX = accuracyX
+        self.accuracyFX = accuracyFX
+        self.calculationLogsString = ""
 
     # function that return mathematical evaluation of given string
     def functionExample(expression, point):
         X = point[0]
         Y = point[1]
-        if(len(point) == 3):
+        if(len(point) >= 3):
             Z = point[2]
-        if(len(point) == 4):
+        if(len(point) >= 4):
             V = point[3]
-        if(len(point) == 5):
+        if(len(point) >= 5):
             W = point[4]
         return eval(expression)      # funkcja testowa
-        #return 1.5 * x - 2.5*y - 1 - math.sin(x+y) - (x-y)**2       # funkcja testowa expected
-        #return 0 - (x-4)**2 - (x -y**2)**2       # funkcja testowa
-        #return -((x+2)**2 + (y-1)**2)
-        #return math.sqrt(16 - x**2 - y**2)
-        #return -1*(2*x**2 - 1.05*x**4 + (1/6)*x**6+x*y+y**2)        # funkcja testowa
 
     def runAlgorithm(self):
         #p_example = [4.5, -1]
@@ -41,8 +39,13 @@ class OptimizationAlgorithm:
         # L - max number of iterations
         # p_example - starting point chosen by the user
         # intervalLength -
-        pointList = gaussSeidel(OptimizationAlgorithm.functionExample, self.givenExpression, precision, int(self.L), self.p_example, int(self.intervalLength))
-        return pointList
+
+        #pointList = gaussSeidel(OptimizationAlgorithm.functionExample, self.givenExpression, precision, int(self.L), self.p_example, float(self.intervalLength), float(self.accuracyX), float(self.accuracyFX), self.calculationLogsString)
+        result = gaussSeidel(OptimizationAlgorithm.functionExample, self.givenExpression, precision, int(self.L), self.p_example, float(self.intervalLength), float(self.accuracyX), float(self.accuracyFX), self.calculationLogsString)
+        pointList = result[0]
+        calculationLogsString = result[1]
+
+        return pointList, calculationLogsString
 
 
     # ZMIENIC WYPISYWANIE W GOLDEN SECTION, NIECH WYPISUJE W GAUSIE PUNKTY w zaleznosci do iteracji

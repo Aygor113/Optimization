@@ -1,8 +1,11 @@
 # Golden section search
 from sympy import *
-from math import *
+#from math import *
+import math
 
-def goldenSectionSearch(function, xl, xu):
+# accuracyX/10 is given as argument in gaussSeidel function
+
+def goldenSectionSearch(function, xl, xu, accuracyX):
     error = 100; i = 1
 
     ratio = (5 ** 0.5 - 1) / 2      # golden ratio
@@ -13,12 +16,12 @@ def goldenSectionSearch(function, xl, xu):
     f2 = function(x2)
 
     # Golden section search
-    while error > 0.1:
-        if f1 > f2:
+    while error > accuracyX:
+        if f1 < f2:
             xl = x2
             x2 = x1
             f2 = f1
-            x1 = xl + ratio *(xu - xl)
+            x1 = xl + ratio * (xu - xl)
             f1 = function(x1)
         else:
             xu = x1
@@ -27,7 +30,7 @@ def goldenSectionSearch(function, xl, xu):
             x2 = xu - ratio * (xu - xl)
             f2 = function(x2)
 
-        if f1 > f2:
+        if f1 < f2:
             xopt = x1
         else:
             xopt = x2
